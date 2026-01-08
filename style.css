@@ -1,0 +1,725 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* --- 1. Global Variables & High-Performance Theme --- */
+:root {
+    /* Deep Space Dark Theme */
+    --bg-color: #0b0d15;
+    --second-bg-color: #151925;
+    --text-color: #e0e0e0;
+    
+    /* Vibrant Neon Accents */
+    --main-color: #00f2ff; /* Cyan */
+    --accent-color: #bd00ff; /* Electric Purple */
+    
+    --hover-color: #0cf;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+}
+
+/* Light Mode (Optional - kept for JS toggle) */
+body.light-mode {
+    --bg-color: #f0f2f5;
+    --second-bg-color: #ffffff;
+    --text-color: #333;
+    --main-color: #0066ff;
+    --accent-color: #6600cc;
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* --- 2. Vibrant Background (Lag-Free) --- */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: radial-gradient(circle at 15% 50%, rgba(0, 242, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(189, 0, 255, 0.08), transparent 25%);
+    pointer-events: none;
+}
+
+/* Neural Canvas is handled by JS, default opacity here */
+#neural-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3; 
+}
+
+/* --- 3. Header & Navigation --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: rgba(11, 13, 21, 0.9); /* High performance transparency */
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+    cursor: default;
+    letter-spacing: 1px;
+}
+
+.logo .highlight {
+    color: var(--main-color);
+    text-shadow: 0 0 10px var(--main-color);
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 3.5rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+    text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+}
+
+.theme-btn {
+    font-size: 2rem;
+    color: var(--text-color);
+    background: transparent;
+    cursor: pointer;
+    margin-left: 2rem;
+    transition: 0.3s;
+}
+
+.theme-btn:hover {
+    color: var(--accent-color);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+    cursor: pointer;
+}
+
+/* --- 4. Reusable Styles --- */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+span {
+    color: var(--main-color);
+}
+
+.heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 4rem;
+}
+
+.heading span {
+    color: var(--main-color);
+    text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    border-radius: 0.6rem;
+    box-shadow: 0 0 1.5rem rgba(0, 242, 255, 0.4);
+    font-size: 1.6rem;
+    color: #000; /* Black text on neon button for readability */
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.4s ease;
+    border: 2px solid transparent;
+}
+
+.btn:hover {
+    box-shadow: none;
+    background: transparent;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    box-shadow: none;
+    margin-left: 1.5rem;
+}
+
+.btn-secondary:hover {
+    background: var(--main-color);
+    color: #000;
+    box-shadow: 0 0 1.5rem var(--main-color);
+}
+
+/* --- 5. Home Section --- */
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.home-content h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 1rem 0;
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+    max-width: 600px;
+    color: #bdbdbd;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.2rem;
+    height: 4.2rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 0 1.5rem 3rem 0;
+    transition: 0.4s ease;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: #000;
+    box-shadow: 0 0 1.5rem var(--main-color);
+    transform: translateY(-5px);
+}
+
+.home-img .img-box {
+    position: relative;
+    width: 32vw;
+    height: 32vw;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home-img .img-box::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent, transparent, transparent, var(--main-color));
+    animation: rotate-border 4s linear infinite;
+}
+
+.home-img .img-box::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent, transparent, transparent, var(--accent-color));
+    animation: rotate-border 4s linear infinite;
+    animation-delay: -2s;
+}
+
+.home-img .img-item {
+    position: relative;
+    width: 98%;
+    height: 98%;
+    background: var(--bg-color);
+    border-radius: 50%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.home-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: normal; /* Ensures image is clear */
+}
+
+/* --- 6. About Section (With Orbit Animation) --- */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    background: var(--second-bg-color);
+}
+
+.about-img {
+    position: relative;
+    width: 350px; /* Increased image container size slightly */
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    object-fit: cover;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+/* The Orbit Circle */
+.tech-orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    animation: rotateOrbit 15s linear infinite;
+    z-index: 1;
+}
+
+.tech-orbit .planet {
+    position: absolute;
+    width: 55px; /* Slightly bigger planets */
+    height: 55px;
+    background: var(--second-bg-color);
+    border: 1px solid var(--main-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem; /* Bigger icons */
+    color: var(--main-color);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+/* Positioning planets on the circle */
+.tech-orbit .planet:nth-child(1) { top: -25px; left: 50%; transform: translateX(-50%); }
+.tech-orbit .planet:nth-child(2) { bottom: 20px; left: -10px; }
+.tech-orbit .planet:nth-child(3) { bottom: 20px; right: -10px; }
+
+.tech-orbit .planet i {
+    animation: rotateOrbit 15s linear infinite reverse;
+}
+
+.about-content {
+    flex: 1;
+}
+
+/* --- UPDATED TEXT SIZES HERE --- */
+.about-content h3 {
+    font-size: 3.2rem; /* Was 2.6rem -> Increased */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.about-content p {
+    font-size: 1.8rem; /* Was 1.6rem -> Increased */
+    line-height: 1.8;  /* Adds more space between lines for readability */
+    margin: 2rem 0 3rem;
+}
+
+.about-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted width */
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.detail-item {
+    padding: 1.5rem; /* More padding */
+    background: var(--glass-bg);
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--main-color); /* Thicker border */
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.7rem; /* Was 1.4rem -> Increased significantly */
+    font-weight: 500;
+}
+
+/* --- 7. Expertise (Services) Section --- */
+.services-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+}
+
+.service-box {
+    flex: 1 1 300px;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transition: 0.5s;
+}
+
+.service-box:hover::before {
+    width: 100%;
+}
+
+.service-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    box-shadow: 0 0 25px rgba(0, 242, 255, 0.15);
+}
+
+.service-box i {
+    font-size: 6rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    transition: 0.3s;
+}
+
+.service-box:hover i {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.service-box h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.service-box p {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+}
+
+/* --- 8. Tech Stack (Skills) --- */
+.skills {
+    background: var(--second-bg-color);
+}
+
+.skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.skills-column {
+    flex: 1 1 40rem;
+}
+
+.skills-column .title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.skills-box {
+    position: relative;
+    background: var(--bg-color);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.skills-content .progress {
+    padding: 1rem 0;
+}
+
+.skills-content .progress h3 {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.skills-content .progress .bar {
+    height: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.skills-content .progress .bar span {
+    display: block;
+    height: 100%;
+    border-radius: 1rem;
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+    position: relative;
+}
+
+/* Use Width Variables for Default View (JS can override) */
+.skills-column:nth-child(1) .progress:nth-child(1) .bar span { width: 95%; }
+.skills-column:nth-child(1) .progress:nth-child(2) .bar span { width: 85%; }
+.skills-column:nth-child(1) .progress:nth-child(3) .bar span { width: 80%; }
+.skills-column:nth-child(1) .progress:nth-child(4) .bar span { width: 75%; }
+
+.skills-column:nth-child(2) .progress:nth-child(1) .bar span { width: 90%; }
+.skills-column:nth-child(2) .progress:nth-child(2) .bar span { width: 85%; }
+.skills-column:nth-child(2) .progress:nth-child(3) .bar span { width: 80%; }
+.skills-column:nth-child(2) .progress:nth-child(4) .bar span { width: 95%; }
+
+/* --- 9. Portfolio Section --- */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.portfolio-box {
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+    overflow: hidden;
+    height: 250px;
+    border: 1px solid var(--border-color);
+}
+
+.portfolio-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+.portfolio-box:hover img {
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+
+.portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, var(--second-bg-color), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: 0.5s ease;
+    backdrop-filter: blur(3px);
+}
+
+.portfolio-box:hover .portfolio-layer {
+    transform: translateY(0);
+}
+
+.portfolio-layer h4 {
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+
+.portfolio-layer p {
+    font-size: 1.5rem;
+    margin: 1rem 0 2rem;
+    color: #fff;
+}
+
+.portfolio-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.portfolio-layer a i {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* --- 10. Contact Section --- */
+.contact {
+    background: var(--second-bg-color);
+}
+
+.contact form {
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.contact form .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box .input-field {
+    width: 49%;
+    margin: 0.8rem 0;
+}
+
+.contact form .input-field input,
+.contact form .textarea-field textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+    border-radius: 0.6rem;
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.contact form .input-field input:focus,
+.contact form .textarea-field textarea:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.contact form .textarea-field textarea {
+    resize: none;
+    height: 200px;
+}
+
+/* --- 11. Footer --- */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem;
+    background: var(--main-color);
+    border-radius: 0.6rem;
+    transition: 0.4s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+    background: var(--accent-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: #000;
+}
+
+/* --- Animations Keyframes --- */
+@keyframes rotate-border {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateOrbit {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 1200px) {
+    html { font-size: 55%; }
+}
+
+@media (max-width: 991px) {
+    .header { padding: 2rem 3%; }
+    section { padding: 10rem 3% 2rem; }
+    .footer { padding: 2rem 3%; }
+    .home { flex-direction: column; text-align: center; }
+    .home-img .img-box { width: 50vw; height: 50vw; margin-top: 2rem; }
+    .about { flex-direction: column; text-align: center; }
+    .about-details { text-align: left; }
+}
+
+@media (max-width: 768px) {
+    #menu-icon { display: block; }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+        display: none;
+    }
+
+    .navbar.active { display: block; }
+    .navbar a { display: block; font-size: 2rem; margin: 3rem 0; }
+    
+    .home-img .img-box { width: 70vw; height: 70vw; }
+}
+
+@media (max-width: 450px) {
+    html { font-size: 50%; }
+    .contact form .input-box .input-field { width: 100%; }
+    .home-content h1 { font-size: 4rem; }
+}

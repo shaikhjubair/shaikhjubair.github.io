@@ -723,3 +723,89 @@ span {
     .contact form .input-box .input-field { width: 100%; }
     .home-content h1 { font-size: 4rem; }
 }
+
+/* =========================================
+   Education Section & UIU Special Theme
+   ========================================= */
+
+.education {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: auto;
+    padding-bottom: 5rem;
+}
+
+.education-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.education-column {
+    flex: 1 1 40rem;
+}
+
+.education-column .title {
+    font-size: 2.5rem;
+    margin: 0 0 1.5rem 2rem;
+    color: #fff;
+}
+
+.education-box {
+    border-left: .2rem solid #00f2ff;
+    background: #1f242d;
+    margin: 0 0 2rem 2rem;
+    position: relative;
+    border-radius: .5rem; 
+    padding: 2rem; 
+    overflow: hidden;
+    transition: .5s ease;
+}
+
+.education-box:hover {
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+.education-content .year {
+    font-size: 1.5rem;
+    color: #00f2ff;
+    padding-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.education-content h3 {
+    font-size: 2rem;
+    color: #fff; 
+}
+
+.education-content p {
+    font-size: 1.6rem; 
+    color: #ccc; 
+    padding-top: .5rem; 
+}
+
+/* --- UIU SPECIAL STYLE (Orange Flame Theme) --- */
+.education-box.uiu-style {
+    border-left: .3rem solid #ff9900; /* UIU Flame Color */
+    background: linear-gradient(90deg, rgba(255, 153, 0, 0.05), transparent);
+}
+
+.education-box.uiu-style:hover {
+    background: rgba(255, 153, 0, 0.1);
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.4); /* Glows like fire */
+}
+
+.education-box.uiu-style .year {
+    color: #ff9900; 
+}
+
+.education-box.uiu-style .uni-name {
+    color: #ffae00; 
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}

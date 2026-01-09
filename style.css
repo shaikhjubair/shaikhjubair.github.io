@@ -797,7 +797,7 @@ span {
 
 .education-box.uiu-style:hover {
     background: rgba(255, 153, 0, 0.1);
-    box-shadow: 0 0 25px rgba(255, 153, 0, 0.4); /* Glows like fire */
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.4); 
 }
 
 .education-box.uiu-style .year {

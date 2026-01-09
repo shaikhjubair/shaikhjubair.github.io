@@ -815,7 +815,7 @@ span {
    Certifications Section Styling
    ========================================= */
 .certifications {
-    background: var(--second-bg-color); /* একটু ভিন্ন ব্যাকগ্রাউন্ড যাতে আলাদা বোঝা যায় */
+    background: var(--second-bg-color);
     padding-bottom: 5rem;
 }
 
@@ -862,7 +862,6 @@ span {
     margin-bottom: 2.5rem;
 }
 
-/* ছোট বাটন ডিজাইন */
 .cert-box .btn {
     padding: 0.8rem 2rem;
     font-size: 1.4rem;
@@ -870,6 +869,7 @@ span {
     background: transparent;
     border: 2px solid var(--main-color);
     color: var(--main-color);
+    text-transform: uppercase;
 }
 
 .cert-box .btn:hover {

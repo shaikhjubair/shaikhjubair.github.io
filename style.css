@@ -328,3 +328,68 @@
 /* পপ-আপের স্ক্রলবার ডিজাইন */
 .modal-content::-webkit-scrollbar { width: 8px; }
 .modal-content::-webkit-scrollbar-thumb { background: var(--main-color); border-radius: 10px; }
+
+
+/* ২. ব্যাকগ্রাউন্ড অ্যানিমেশন (আলো কমানো হয়েছে) */
+section:nth-of-type(n+2)::before,
+#education::before, #resume::before, #history::before, #certifications::before,
+#journey::before, #projects::before, #contact::before {
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* কালারগুলো আগের মতোই, কিন্তু নিচের Opacity দিয়ে আলো কমানো হয়েছে */
+    background: linear-gradient(
+        125deg, 
+        #000000 0%,      
+        #1e0b2e 30%,     /* হালকা বেগুনি */
+        #022c22 70%,     /* হালকা সায়ান */
+        #000000 100%     
+    );
+    
+    background-size: 300% 300%; 
+    z-index: -2;
+    animation: mysticFlow 15s ease infinite;
+    
+    /* 🔥 পরিবর্তন: আলো কমানো হলো (আগে 0.9 ছিল) */
+    opacity: 0.4; 
+}
+
+/* ৩. হালকা ডট প্যাটার্ন */
+section:nth-of-type(n+2)::after,
+#education::after, #resume::after, #history::after, #certifications::after,
+#journey::after, #projects::after, #contact::after {
+    
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px; /* ডটগুলো একটু দূরে দূরে */
+    opacity: 0.2; /* ডটগুলোও হালকা করা হলো */
+    
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ৪. অ্যানিমেশন ফ্রেম */
+@keyframes mysticFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ৫. কার্ড/বক্স ডিজাইন (ব্যাকগ্রাউন্ড হালকা হওয়ায় এগুলো একটু স্পষ্ট করা হলো) */
+.card, .timeline-content, .box, .service-box, .about-content, .project-card, .skill-item {
+    background: rgba(15, 15, 15, 0.6) !important; /* একটু গাঢ় কার্ড */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}

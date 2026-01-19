@@ -14,7 +14,8 @@
     <meta property="og:url" content="https://shaikhjubair.me/">
     <meta property="og:title" content="Shaikh Jubair | AI Engineer & Data Scientist">
     <meta property="og:description" content="Portfolio of Shaikh Jubair - AI Engineer specializing in Machine Learning, Python, and Data Science.">
-    <meta property="og:image" content="https://shaikhjubair.me/profile.jpg"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://shaikhjubair.me/profile.jpg"> 
+    <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://shaikhjubair.me/">
     <meta property="twitter:title" content="Shaikh Jubair | AI Engineer & Data Scientist">
     <meta property="twitter:description" content="Portfolio of Shaikh Jubair - AI Engineer specializing in Machine Learning, Python, and Data Science.">
@@ -28,6 +29,109 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        /* =========================================
+           NEW ANIMATION STYLES (ADDED FOR YOU)
+           ========================================= */
+        
+        /* 1. The Moving Cyber Grid Background */
+        .blog-hero {
+            position: relative;
+            background-color: #080808; /* Dark background */
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+            min-height: 50vh; /* Takes half screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg-animation {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveGrid 20s linear infinite;
+            z-index: 0;
+        }
+
+        /* Glowing Orb Effect */
+        .hero-bg-glow {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
+            z-index: 1;
+            animation: pulseGlow 5s ease-in-out infinite alternate;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Keeps text above animation */
+            text-align: center;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: perspective(500px) rotateX(20deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(20deg) translateY(40px); }
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* 2. Layout Fix: Prevent Footer Jump */
+        .blog-layout {
+            min-height: 60vh; /* Ensures space even if no posts */
+            padding: 4rem 10%;
+            background: #050505;
+        }
+
+        /* 3. Loading Spinner */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: #00d2ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .loading-text {
+            margin-top: 15px;
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        /* Markdown Styles Inside Modal */
+        .markdown-body { color: #ccc; line-height: 1.8; font-size: 1.1rem; }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .markdown-body p { margin-bottom: 1.5rem; }
+        .markdown-body ul { padding-left: 2rem; margin-bottom: 1.5rem; }
+        .markdown-body li { margin-bottom: 0.5rem; }
+        .markdown-body strong { color: #00d2ff; }
+        .markdown-body code { background: #222; padding: 2px 5px; border-radius: 4px; font-family: monospace; color: #ff0055; }
+        .markdown-body pre { background: #111; padding: 15px; border-radius: 10px; overflow-x: auto; margin-bottom: 20px; border: 1px solid #333; }
+        .markdown-body img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
+    </style>
 </head>
 <body>
 
@@ -41,7 +145,7 @@
     </header>
 
     <section class="blog-hero">
-        <div class="hero-content">
+        <div class="hero-bg-animation"></div> <div class="hero-bg-glow"></div>      <div class="hero-content">
             <span class="badge-glow">Dev Logs</span>
             <h1>The <span class="text-gradient">Open Journal</span></h1>
             <p>Thoughts written directly on GitHub, published here.</p>
@@ -50,7 +154,10 @@
 
     <section class="blog-layout">
         <div class="modern-grid" id="blog-grid">
-            <p style="color:white; text-align:center; font-size:1.5rem;">Connecting to GitHub...</p>
+            <div class="loader-container">
+                <div class="spinner"></div>
+                <p class="loading-text">Fetching data from neural network...</p>
+            </div>
         </div>
     </section>
 
@@ -72,38 +179,42 @@
 
     <script>
         // ============================================
-        // ⚠️ আপনার ইউজারনেম এবং রিপোজিটরি নাম দিন
+        // ⚠️ আপনার ইউজারনেম এবং রিপোজিটরি নাম
         // ============================================
         const username = "shaikhjubair";
         const repo = "shaikhjubair.github.io"; 
         
-        const apiUrl = `https://api.github.com/repos/${username}/${repo}/issues?state=open&labels=published`;
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/issues?state=open&labels=blog`; // 'blog' label is safer
         const blogContainer = document.getElementById('blog-grid');
-        let allPosts = []; // সব পোস্ট এখানে জমা থাকবে
+        let allPosts = [];
 
-        // ১. গিটহাব থেকে পোস্ট নিয়ে আসা
+        // 1. Fetch Posts from GitHub
         async function fetchPosts() {
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
                 allPosts = data;
                 
-                blogContainer.innerHTML = ""; // লোডিং টেক্সট মুছা
+                blogContainer.innerHTML = ""; // Clear loader
 
                 if(data.length === 0) {
-                    blogContainer.innerHTML = "<p style='color:white; text-align:center;'>No published posts found.</p>";
+                    blogContainer.innerHTML = `
+                        <div style='grid-column: 1/-1; text-align:center; padding: 50px;'>
+                            <i class='bx bx-ghost' style='font-size: 3rem; color: #333;'></i>
+                            <p style='color:#666; margin-top:10px;'>No signals detected yet.</p>
+                        </div>`;
                     return;
                 }
 
                 data.forEach((post, index) => {
-                    // লেখার ভেতর থেকে প্রথম ছবিটা খুঁজে বের করা (থাম্বনেইল হিসেবে ব্যবহারের জন্য)
-                    let firstImage = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000"; // ডিফল্ট ছবি
+                    // Extract first image for thumbnail
+                    let firstImage = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000"; 
                     const imgMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
                     if(imgMatch) {
                         firstImage = imgMatch[1];
                     }
 
-                    // কার্ড বানানো
+                    // Format Date
                     const date = new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
                     
                     const html = `
@@ -113,7 +224,7 @@
                                 <span class="card-badge">Blog</span>
                             </div>
                             <div class="card-details">
-                                <span style="color:var(--main-color); font-size:0.9rem;">${date}</span>
+                                <span style="color:#00d2ff; font-size:0.9rem;">${date}</span>
                                 <h3>${post.title}</h3>
                                 <a href="javascript:void(0)" class="link-hover">Read Full Story <i class='bx bx-right-arrow-alt'></i></a>
                             </div>
@@ -124,16 +235,15 @@
 
             } catch (error) {
                 console.log(error);
-                blogContainer.innerHTML = "<p style='color:red; text-align:center;'>Error loading posts.</p>";
+                blogContainer.innerHTML = "<p style='color:red; text-align:center;'>Error loading data stream.</p>";
             }
         }
 
-        // ২. পোস্ট ওপেন করা (Modal)
+        // 2. Open Post (Modal)
         const modal = document.getElementById('blog-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDate = document.getElementById('modal-date');
         const modalBody = document.getElementById('modal-body');
-        const modalCover = document.getElementById('modal-cover');
 
         function openPost(index) {
             const post = allPosts[index];
@@ -142,16 +252,9 @@
             modalTitle.innerText = post.title;
             modalDate.innerText = date;
             
-            // Markdown থেকে HTML এ কনভার্ট করা (marked.js দিয়ে)
+            // Parse Markdown
             modalBody.innerHTML = marked.parse(post.body);
             
-            // পোস্টের ভেতরের সব ইমেজ রেসপন্সিভ করা
-            const images = modalBody.getElementsByTagName('img');
-            for(let img of images) {
-                img.style.maxWidth = "100%";
-                img.style.borderRadius = "10px";
-            }
-
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -161,21 +264,9 @@
             document.body.style.overflow = 'auto';
         }
 
-        // লোড শুরু
+        // Start Fetching
         fetchPosts();
     </script>
-    
-    <style>
-        /* Markdown Styles for inside the post */
-        .markdown-body { color: #ccc; line-height: 1.8; font-size: 1.6rem; }
-        .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
-        .markdown-body p { margin-bottom: 1.5rem; }
-        .markdown-body ul { padding-left: 2rem; margin-bottom: 1.5rem; }
-        .markdown-body li { margin-bottom: 0.5rem; }
-        .markdown-body strong { color: var(--main-color); }
-        .markdown-body code { background: #222; padding: 2px 5px; border-radius: 4px; font-family: monospace; color: var(--accent-color); }
-        .markdown-body pre { background: #111; padding: 15px; border-radius: 10px; overflow-x: auto; margin-bottom: 20px; }
-    </style>
 
 </body>
 </html>

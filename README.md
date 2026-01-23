@@ -29,7 +29,7 @@ Welcome to the source code of my personal portfolio website. This project showca
 * **Hosting:** GitHub Pages
 * **Analytics:** Google Analytics
 
----
+--- 
 
 ## 📂 Project Structure
 
